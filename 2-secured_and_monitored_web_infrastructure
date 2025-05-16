@@ -1,0 +1,46 @@
+                          +-----------------------+
+                          |    Monitoring Server  |
+                          | (e.g., SumoLogic,     |
+                          |  Prometheus, etc.)    |
+                          +-----------------------+
+                                   ↑   ↑   ↑
+                              [Metrics, Logs, Alerts]
+                                   |   |   |
+                            +------+------+------+
+                            |      |      |      |
+                            v      v      v      v
+
+                    +------------+  +------------+  +------------+
+                    | Firewall 1 |  | Firewall 2 |  | Firewall 3 |
+                    +------------+  +------------+  +------------+
+                          |              |              |
+                          |              |              |
+                          v              v              v
+
+                 +----------------+  +----------------+  +----------------+
+                 | Load Balancer  |  | App Server     |  | Database Server|
+                 | (with SSL Term)|  | (web + app)    |  | (MySQL Primary)|
+                 | HTTPS (443)    |  | Apache/Nginx + |  |                 |
+                 | SSL Cert for   |  | App logic      |  |                 |
+                 | www.foobar.com |  +----------------+  +----------------+
+                 +----------------+
+                         |
+                         |
+                         v
+               +-----------------------+
+               |  Web Server 1         |
+               |  Apache/Nginx         |
+               |  Monitoring Client    |
+               +-----------------------+
+
+               +-----------------------+
+               |  Web Server 2         |
+               |  Apache/Nginx         |
+               |  Monitoring Client    |
+               +-----------------------+
+
+               +-----------------------+
+               |  Web Server 3         |
+               |  Apache/Nginx         |
+               |  Monitoring Client    |
+               +-----------------------+

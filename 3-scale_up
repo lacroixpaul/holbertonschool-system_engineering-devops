@@ -1,0 +1,45 @@
+                              +-----------------------+
+                              |   Monitoring Server   |
+                              |  (e.g. SumoLogic,     |
+                              |   Prometheus, etc.)   |
+                              +-----------------------+
+                                       ↑   ↑   ↑   ↑   ↑   ↑
+                               [Metrics, Logs, Alerts]
+                                       |   |   |   |   |   |
+                              +--------+---+---+---+---+---+--------+
+                              |        |   |   |   |   |   |        |
+                              v        v   v   v   v   v   v        v
+
+                          +-----------+  +-----------+  +-----------+
+                          | Firewall 1|  | Firewall 2|  | Firewall 3|
+                          +-----------+  +-----------+  +-----------+
+                                |              |              |
+                                |              |              |
+                                v              v              v
+
+                        +-------------------+  +-------------------+
+                        | HAProxy LB Node 1 |  | HAProxy LB Node 2 |
+                        | (Clustered Setup) |  | (Failover Ready)  |
+                        +--------+----------+  +----------+--------+
+                                 \________________________/
+                                            |
+                                            v
+                                   +----------------+
+                                   |   Firewall 4   |   ← protects internal traffic from LB to Web/App
+                                   +----------------+
+                                            |
+                                            v
+
+                          +-----------+   +-------------+   +--------------+
+                          | Web Server|   | App Server  |   | DB Server    |
+                          | (Nginx)   |   | (Flask/Node)|   | (MySQL)      |
+                          |           |   |             |   | (write-only) |
+                          +-----------+   +-------------+   +--------------+
+                              |                |                  |
+                              |                |                  |
+                              v                v                  v
+                       +----------------+ +----------------+ +----------------+
+                       | Monitoring Cl. | | Monitoring Cl. | | Monitoring Cl. |
+                       +----------------+ +----------------+ +----------------+
+
+                          [ Plus: One extra App or Web server, depending on load ]

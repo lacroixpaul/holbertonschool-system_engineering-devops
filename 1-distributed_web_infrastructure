@@ -1,0 +1,11 @@
+[ User ]
+    ↓
+DNS → www.foobar.com → Load Balancer (HAProxy - Round Robin)
+                         ↓              ↓
+               ┌──────────────┐  ┌──────────────┐
+               │  Server 1    │  │  Server 2    │
+               │  Nginx       │  │  Nginx       │
+               │  PHP-FPM     │  │  PHP-FPM     │
+               │  App Files   │  │  App Files   │
+               │  MySQL (Primary)│  MySQL (Replica)│
+               └──────────────┘  └──────────────┘

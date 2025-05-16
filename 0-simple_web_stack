@@ -1,0 +1,19 @@
+User
+    |
+    v
+Navigator -> www.foobar.com
+    |
+    v
+DNS (return 8.8.8.8)
+    |
+    v
+Server 8.8.8.8
+ ┌────────────────────────────┐
+ │         Nginx              │ ⇽⇾ Receive requests
+ ├────────────────────────────┤
+ │ Application Server (PHP)   │ ⇽⇾ Make HTML pages
+ ├────────────────────────────┤
+ │ App code (files)   │ ⇽⇾ PHP, HTML, CSS
+ ├────────────────────────────┤
+ │ MySQL                      │ ⇽⇾ Stock the data
+ └────────────────────────────┘
